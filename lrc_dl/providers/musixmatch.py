@@ -1,8 +1,8 @@
 from typing import Optional
 import httpx
 
-from lyrics_dl.core import Song, AbstractProvider
-from lyrics_dl.registry import lyrics_provider
+from lrc_dl.core import Song, AbstractProvider
+from lrc_dl.registry import lyrics_provider
 
 
 @lyrics_provider

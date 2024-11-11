@@ -1,15 +1,15 @@
 from setuptools import setup
 
 setup(
-    name='lyrics_dl',
+    name='lrc_dl',
     version='0.0.3',
     description='An ultimate cli tool for downloading song lyrics, inspired by other awesome *-dl programs.',
     packages=[
-        "lyrics_dl",
-        "lyrics_dl.providers",
+        "lrc_dl",
+        "lrc_dl.providers",
     ],
     entry_points={
-        'console_scripts': ['lyrics-dl=lyrics_dl.main:main'],
+        'console_scripts': ['lrc-dl=lrc_dl.main:main'],
     },
     install_requires=[
         "httpx>=0.24.1",

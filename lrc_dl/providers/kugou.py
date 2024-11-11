@@ -7,8 +7,8 @@ from datetime import datetime
 
 import httpx
 
-from lyrics_dl.core import Song, AbstractProvider
-from lyrics_dl.registry import lyrics_provider
+from lrc_dl.core import Song, AbstractProvider
+from lrc_dl.registry import lyrics_provider
 
 
 KRC_ENCODE_KEY = [64, 71, 97, 119, 94, 50, 116, 71, 81, 54, 49, 45, 206, 210, 110, 105]

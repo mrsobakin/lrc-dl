@@ -1,4 +1,4 @@
-from lyrics_dl.core import AbstractProvider
+from lrc_dl.core import AbstractProvider
 
 
 class Registry:

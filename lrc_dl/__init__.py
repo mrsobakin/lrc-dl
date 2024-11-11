@@ -3,12 +3,12 @@ from typing import Optional
 from pathlib import Path
 import traceback
 
-# Initialize classes from lyrics_dl/providers
-import lyrics_dl.providers
-from lyrics_dl.core import Song
-from lyrics_dl.registry import Registry
-from lyrics_dl.config import LyricsDlConfig
-from lyrics_dl.logger import DefaultLogger, AbstractLogger
+# Initialize classes from lrc_dl/providers
+import lrc_dl.providers
+from lrc_dl.core import Song
+from lrc_dl.registry import Registry
+from lrc_dl.config import LyricsDlConfig
+from lrc_dl.logger import DefaultLogger, AbstractLogger
 
 
 class LyricsDl:
@@ -32,13 +32,13 @@ class LyricsDl:
             try:
                 provider = Provider(**provider_config)
             except TypeError as e:
-                self.logger.error(f"[lyrics-dl] {e}")
+                self.logger.error(f"[lrc-dl] {e}")
                 continue
 
             self.providers.append(provider)
 
     def fetch_lyrics(self, song: Song) -> Optional[str]:
-        self.logger.info(f"[lyrics-dl] Fetching lyrics for \"{song.artist} - {song.title}\"")
+        self.logger.info(f"[lrc-dl] Fetching lyrics for \"{song.artist} - {song.title}\"")
         for provider in self.providers:
             self.logger.info(f"[{provider.name}] Fetching lyrics...")
 
@@ -53,7 +53,7 @@ class LyricsDl:
                 self.logger.info(f"[{provider.name}] Found lyrics!")
 
                 if self.config.prepend_header:
-                    lyrics = f"[re:lyrics-dl:{provider.name}]\n\n{lyrics}"
+                    lyrics = f"[re:lrc-dl:{provider.name}]\n\n{lyrics}"
 
                 return lyrics
 
@@ -65,20 +65,20 @@ class LyricsDl:
         lyrics_path = path.with_suffix(".lrc")
 
         if lyrics_path.exists() and not force:
-            self.logger.error("[lyrics-dl] Lyrics file already exists!")
+            self.logger.error("[lrc-dl] Lyrics file already exists!")
             return False
 
         # TODO handle errors
         try:
             song = Song.from_file(path)
         except Exception as e:
-            self.logger.error(f"[lyrics-dl] {path}: {e}")
+            self.logger.error(f"[lrc-dl] {path}: {e}")
             return False
 
         lyrics = self.fetch_lyrics(song)
 
         if not lyrics:
-            self.logger.error("[lyrics-dl] No lyrics was found!")
+            self.logger.error("[lrc-dl] No lyrics was found!")
             return True
 
         with open(lyrics_path, "w") as f:
@@ -91,7 +91,7 @@ class LyricsDl:
 
         for file_path in path.rglob("*"):
             if delay_next and self.config.delay is not None:
-                self.logger.info(f"[lyrics-dl] Sleeping for {self.config.delay:.2f}s...")
+                self.logger.info(f"[lrc-dl] Sleeping for {self.config.delay:.2f}s...")
                 time.sleep(self.config.delay)
 
             if file_path.suffix[1:] not in extensions:

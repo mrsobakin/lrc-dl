@@ -35,7 +35,7 @@ class DefaultLogger(AbstractLogger):
             return
         self.__initialized = True
 
-        self.logger = logging.getLogger("lyrics-dl")
+        self.logger = logging.getLogger("lrc-dl")
         self.logger.setLevel(logging.DEBUG)
 
         console_handler = logging.StreamHandler()

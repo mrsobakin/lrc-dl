@@ -4,7 +4,7 @@ from typing import Self
 import os
 import tomllib
 
-from lyrics_dl.logger import DefaultLogger
+from lrc_dl.logger import DefaultLogger
 
 
 def _get_config_file() -> Path | None:
@@ -13,7 +13,7 @@ def _get_config_file() -> Path | None:
     if config_dir is None:
         return None
 
-    return Path(config_dir) / "lyrics-dl" / "config.toml"
+    return Path(config_dir) / "lrc-dl" / "config.toml"
 
 
 CONFIG_PATH = _get_config_file()
