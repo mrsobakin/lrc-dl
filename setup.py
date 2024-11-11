@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='lrc_dl',
-    version='0.0.3',
+    version='0.1.0',
     description='An ultimate cli tool for downloading song lyrics, inspired by other awesome *-dl programs.',
     packages=[
         "lrc_dl",
