@@ -4,6 +4,8 @@ setup(
     name='lrc_dl',
     version='0.1.0',
     description='An ultimate cli tool for downloading song lyrics, inspired by other awesome *-dl programs.',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     packages=[
         "lrc_dl",
         "lrc_dl.providers",
