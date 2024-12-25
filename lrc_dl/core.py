@@ -14,7 +14,7 @@ class Song:
 
     @classmethod
     def from_file(cls, path: Path) -> Self:
-        metadata = mutagen.File(path)
+        metadata = mutagen.File(path, easy=True)
 
         if "title" not in metadata or "artist" not in metadata:
             raise RuntimeError("Song is missing title or artist name")
