@@ -16,11 +16,18 @@ class Song:
     def from_file(cls, path: Path) -> Self:
         metadata = mutagen.File(path, easy=True)
 
-        if "title" not in metadata or "artist" not in metadata:
+        if (
+            ("title" not in metadata) or
+            ("artist" not in metadata and "albumartist" not in metadata)
+        ):
             raise RuntimeError("Song is missing title or artist name")
 
         title = ", ".join(metadata.get("title"))
-        artist = ", ".join(metadata.get("artist"))
+
+        if "albumartist" in metadata:
+            artist = ", ".join(metadata.get("albumartist"))
+        else:
+            artist = ", ".join(metadata.get("artist"))
 
         album = metadata.get("album")
         if album:
