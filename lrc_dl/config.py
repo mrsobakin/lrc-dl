@@ -31,10 +31,17 @@ class LyricsDlConfig:
         with open(path, "rb") as f:
             config = tomllib.load(f)
 
-        return cls(
-            order=config["providers"].pop("order"),
-            providers_configs=config["providers"],
-        )
+        cfg = {
+            "order": config["providers"].pop("order", None),
+            "delay": config["providers"].pop("delay", None),
+            "prepend_header": config["providers"].pop("prepend_header", None),
+            "providers_configs": config.get("providers"),
+        }
+
+        # Remove unset keys
+        cfg = {k: v for k, v in cfg.items() if v is not None}
+
+        return cls(**cfg)
 
     @classmethod
     def default(cls) -> Self:
