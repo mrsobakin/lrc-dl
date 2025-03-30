@@ -15,6 +15,7 @@ setup(
     },
     install_requires=[
         "httpx>=0.24.1",
+        "beautifulsoup4>=4.13.3",
         "mutagen>=1.46.0",
         "yt-dlp>=2023.10.13",
     ]

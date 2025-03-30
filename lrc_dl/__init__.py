@@ -1,10 +1,10 @@
 import time
-from typing import Optional
-from pathlib import Path
 import traceback
+from pathlib import Path
+from typing import Optional
 
 # Initialize classes from lrc_dl/providers
-import lrc_dl.providers
+import lrc_dl.providers as _
 from lrc_dl.core import Song
 from lrc_dl.registry import Registry
 from lrc_dl.config import LyricsDlConfig
@@ -23,11 +23,12 @@ class LyricsDl:
         self.providers = []
 
         for name in config.order:
-            Provider = providers_classes[name]
-            provider_config = config.providers_configs.get(name)
+            Provider = providers_classes.get(name)
 
-            if not provider_config:
-                provider_config = {}
+            if not Provider:
+                continue
+
+            provider_config = config.providers_configs.get(name, {})
 
             try:
                 provider = Provider(**provider_config)
@@ -57,7 +58,7 @@ class LyricsDl:
 
                 return lyrics
 
-            self.logger.info(f"[{provider.name}] No lyrics was found!")
+            self.logger.info(f"[{provider.name}] No lyrics were found!")
 
         return None
 
@@ -78,7 +79,7 @@ class LyricsDl:
         lyrics = self.fetch_lyrics(song)
 
         if not lyrics:
-            self.logger.error("[lrc-dl] No lyrics was found!")
+            self.logger.error("[lrc-dl] No lyrics were found!")
             return True
 
         with open(lyrics_path, "w") as f:
