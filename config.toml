@@ -1,7 +1,7 @@
 [providers]
 order = ["lrclib", "kugou", "musixmatch", "genius"]
 delay = 10
-prepend_header = false
+prepend_header = true
 
 [providers.musixmatch]
 token = ""
