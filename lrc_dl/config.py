@@ -21,7 +21,7 @@ CONFIG_PATH = _get_config_file()
 
 @dataclass
 class LyricsDlConfig:
-    order: list[str] = field(default_factory=lambda: ["lrclib", "kugou", "musixmatch", "genius"])
+    order: list[str] = field(default_factory=lambda: ["kugou", "lrclib", "genius"])
     delay: float | None = 10
     prepend_header: bool = True
     providers_configs: dict[str, dict] = field(default_factory=lambda: {})

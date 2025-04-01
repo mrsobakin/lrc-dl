@@ -1,5 +1,5 @@
 [providers]
-order = ["lrclib", "kugou", "musixmatch", "genius"]
+order = ["musixmatch", "kugou", "lrclib", "genius"]
 delay = 10
 prepend_header = true
 
